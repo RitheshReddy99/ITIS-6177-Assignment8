@@ -1,5 +1,5 @@
 {
-    "name": "itis-6177-Assignment8",
+    "name": "itis-6177-assignment8",
     "version": "1.0.0",
     "description": "Swagger with express",
     "main": "server.js",
