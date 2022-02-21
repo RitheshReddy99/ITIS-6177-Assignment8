@@ -126,7 +126,7 @@ app.post("/food", (req, res) => {
 
 /**
  * @swagger
- * /foods:
+ * /food:
  *   get:
  *     summary: Returns list of all the food items
  *     tags: [food]
@@ -316,7 +316,7 @@ app.patch("/foods", (req, res) => {
  *         description: Food item not deleted
  */
 
-app.delete("/foods:id", (req, res) => {
+app.delete("/foods/:id", (req, res) => {
     let id = req.params.id;
     getConnection()
       .then((conn) => {
