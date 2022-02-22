@@ -355,15 +355,7 @@ app.patch("/foods", [
  *         description: Food item not deleted
  */
 
-app.delete("/foods/:id", [
-  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
-    min: 1,
-  }),
-],(req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.delete("/foods/:id",(req, res) => {
     let id = req.params.id;
     getConnection()
       .then((conn) => {
