@@ -100,24 +100,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
  *         description: Could not insert
  */
 
-app.post("/food",[
-  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
-    min: 1,
-  }),
-  check("ITEM_NAME", "ITEM_NAME must not be empty").isLength({
-    min: 1,
-  }),
-  check("ITEM_UNIT", "ITEM_UNIT must not be empty").isLength({
-    min: 1,
-  }),
-  check("COMPANY_ID", "COMPANY_ID must not be empty").isLength({
-    min: 1,
-  }),
-], (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.post("/food", (req, res) => {
     let body = req.body;
     getConnection()
       .then((conn) => {
@@ -220,18 +203,7 @@ app.get("/food", (req, res) => {
  *         description: Could not update
  */
 
-app.put("/food", [
-  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
-    min: 1,
-  }),
-  check("ITEM_NAME", "ITEM_NAME must not be empty").isLength({
-    min: 1,
-  }),
-], (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.put("/food", (req, res) => {
     let body = req.body;
     getConnection()
       .then((conn) => {
@@ -289,18 +261,7 @@ app.put("/food", [
  *         description: Could not update
  */
 
-app.patch("/foods", [
-  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
-    min: 1,
-  }),
-  check("ITEM_UNIT", "ITEM_UNIT must not be empty").isLength({
-    min: 1,
-  }),
-], (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.patch("/foods", (req, res) => {
     let body = req.body;
     getConnection()
       .then((conn) => {
@@ -355,15 +316,7 @@ app.patch("/foods", [
  *         description: Food item not deleted
  */
 
-app.delete("/foods/:id", [
-  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
-    min: 1,
-  }),
-],(req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+app.delete("/foods/:id", (req, res) => {
     let id = req.params.id;
     getConnection()
       .then((conn) => {
