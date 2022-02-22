@@ -355,7 +355,11 @@ app.patch("/foods", [
  *         description: Food item not deleted
  */
 
-app.delete("/foods/:id",(req, res) => {
+app.delete("/foods/:id", [
+  check("id", "ITEM_ID must not be empty").isLength({
+    min: 1,
+  }),
+], (req, res) => {
     let id = req.params.id;
     getConnection()
       .then((conn) => {
