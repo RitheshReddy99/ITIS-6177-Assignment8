@@ -100,8 +100,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
  *         description: Could not insert
  */
 
-app.post("/food",
-[
+app.post("/food",[
   check("ITEM_ID", "ITEM_ID must not be empty").isLength({
     min: 1,
   }),
@@ -221,8 +220,7 @@ app.get("/food", (req, res) => {
  *         description: Could not update
  */
 
-app.put("/food", 
-[
+app.put("/food", [
   check("ITEM_ID", "ITEM_ID must not be empty").isLength({
     min: 1,
   }),
@@ -291,16 +289,14 @@ app.put("/food",
  *         description: Could not update
  */
 
-app.patch("/foods", 
-[
+app.patch("/foods", [
   check("ITEM_ID", "ITEM_ID must not be empty").isLength({
     min: 1,
   }),
   check("ITEM_UNIT", "ITEM_UNIT must not be empty").isLength({
     min: 1,
   }),
-],
-(req, res) => {
+], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
@@ -359,7 +355,11 @@ app.patch("/foods",
  *         description: Food item not deleted
  */
 
-app.delete("/foods/:id", (req, res) => {
+app.delete("/foods/:id", [
+  check("ITEM_ID", "ITEM_ID must not be empty").isLength({
+    min: 1,
+  }),
+],(req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
